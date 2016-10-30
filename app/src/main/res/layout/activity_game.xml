@@ -21,7 +21,8 @@
             android:layout_marginLeft="12dp"
             android:layout_marginStart="12dp"
             android:layout_centerVertical="true"
-            android:text="@string/play_game" />
+            android:text="@string/play_game"
+            android:onClick="startGame"/>
 
         <LinearLayout
             android:id="@+id/status_display"

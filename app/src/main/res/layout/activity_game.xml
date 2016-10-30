@@ -1,0 +1,117 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_game"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.joseph.bubblepopper.GameActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent" >
+
+        <Button
+            android:id="@+id/go_button"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_centerVertical="true"
+            android:text="@string/play_game" />
+
+        <LinearLayout
+            android:id="@+id/status_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="horizontal"
+            tools:ignore="RelativeOverlap">
+
+            <ImageView
+                android:id="@+id/star1"
+                android:layout_width="@dimen/star_size"
+                android:layout_height="@dimen/star_size"
+                android:src="@drawable/star"
+                android:tint="@color/starColor" />
+
+            <ImageView
+                android:id="@+id/star2"
+                android:layout_width="@dimen/star_size"
+                android:layout_height="@dimen/star_size"
+                android:src="@drawable/star"
+                android:tint="@color/starColor"/>
+
+            <ImageView
+                android:id="@+id/star3"
+                android:layout_width="@dimen/star_size"
+                android:layout_height="@dimen/star_size"
+                android:src="@drawable/star"
+                android:tint="@color/starColor" />
+
+            <ImageView
+                android:id="@+id/star4"
+                android:layout_width="@dimen/star_size"
+                android:layout_height="@dimen/star_size"
+                android:src="@drawable/star"
+                android:tint="@color/starColor" />
+
+            <ImageView
+                android:id="@+id/star5"
+                android:layout_width="@dimen/star_size"
+                android:layout_height="@dimen/star_size"
+                android:src="@drawable/star"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:tint="@color/starColor"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/level_label"
+                android:textSize="@dimen/status_text_size"
+                android:textStyle="bold"
+                tools:ignore="RelativeOverlap" />
+
+            <TextView
+                android:id="@+id/level_display"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:gravity="end"
+                android:text="@string/max_number"
+                android:textSize="@dimen/status_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/score_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/score_label"
+                android:textSize="@dimen/status_text_size"
+                android:textStyle="bold"
+                tools:ignore="RelativeOverlap" />
+
+            <TextView
+                android:id="@+id/score_display"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight = "16dp"
+                android:gravity="end"
+                android:text="@string/max_number"
+                android:textSize="@dimen/status_text_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

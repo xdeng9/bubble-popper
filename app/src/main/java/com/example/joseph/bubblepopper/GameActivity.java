@@ -18,6 +18,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.joseph.bubblepopper.utils.HighScoreHelper;
+import com.example.joseph.bubblepopper.utils.SimpleAlertDialog;
+import com.example.joseph.bubblepopper.utils.SoundHelper;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,7 +39,7 @@ public class GameActivity extends AppCompatActivity implements Bubble.BubbleList
     private static final int MAX_ANIMATION_DELAY = 1500;
     private static final int MIN_ANIMATION_DURATION = 1000;
     private static final int MAX_ANIMATION_DURATION = 8000;
-    private int BUBBLES_PER_LEVEL=5;
+    private int BUBBLES_PER_LEVEL=10;
     private ViewGroup mContentView;
     private int mScreenWidth, mScreenHeight, mLevel,mScore;
     private int starsLeft = 5;
@@ -46,6 +50,7 @@ public class GameActivity extends AppCompatActivity implements Bubble.BubbleList
     private ImageView star1, star2, star3, star4, star5;
     private Button goButton;
     private int mBubblesPopped;
+    private SoundHelper mSoundHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +89,9 @@ public class GameActivity extends AppCompatActivity implements Bubble.BubbleList
         });
 
         updateDisplay();
+
+        mSoundHelper = new SoundHelper(this);
+        mSoundHelper.setupMusicPlayer(this);
     }
 
     private void setFullScreenMode() {
@@ -131,6 +139,7 @@ public class GameActivity extends AppCompatActivity implements Bubble.BubbleList
             resetGame();
         }else
             startLevel();
+        mSoundHelper.playMusic();
     }
 
     private void finishLevel(){
@@ -143,7 +152,7 @@ public class GameActivity extends AppCompatActivity implements Bubble.BubbleList
     public void popBubble(Bubble bubble, boolean touched) {
         mContentView.removeView(bubble);
         mBubbles.remove(bubble);
-        
+       // mSoundHelper.playSound();
         mBubblesPopped++;
 
         if (touched){
@@ -172,6 +181,7 @@ public class GameActivity extends AppCompatActivity implements Bubble.BubbleList
     }
 
     private void gameOver(){
+        mSoundHelper.pauseMusic();
         Toast.makeText(this, "Game Over!", Toast.LENGTH_LONG).show();
         for (Bubble bubble : mBubbles){
             mContentView.removeView(bubble);
@@ -180,6 +190,14 @@ public class GameActivity extends AppCompatActivity implements Bubble.BubbleList
         mBubbles.clear();
         mPlaying = false;
         goButton.setText("Play again");
+
+        if(HighScoreHelper.isTopScore(this, mScore)){
+            HighScoreHelper.setTopScore(this, mScore);
+            SimpleAlertDialog dialog = SimpleAlertDialog.newInstance("New High Score",
+                    String.format("Congrats! Your new high score is %d", mScore)
+            );
+            dialog.show(getSupportFragmentManager(),null);
+        }
     }
 
     private void updateDisplay() {

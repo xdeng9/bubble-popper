@@ -53,11 +53,12 @@ public class SoundHelper {
         mSoundID = mSoundPool.load(activity, R.raw.pop, 1);
     }
 
-    public void playSound() {
-        if (mLoaded) {
-            mSoundPool.play(mSoundID, mVolume, mVolume, 1, 0, 1f);
-        }
-    }
+   
+//     public void playSound() {
+//         if (mLoaded) {
+//             mSoundPool.play(mSoundID, mVolume, mVolume, 1, 0, 1f);
+//         }
+//     }
 
     public void setupMusicPlayer(Context context){
         mPlayer = MediaPlayer.create(context.getApplicationContext(), R.raw.bgsound);
